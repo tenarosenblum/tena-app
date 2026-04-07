@@ -46,9 +46,10 @@ export async function sendMessage(messages, mode = 'general') {
   })
 
   if (!response.ok) {
-    console.error('Anthropic error:', JSON.stringify(err))
-    throw new Error(err.error?.message || 'API request failed')
-  }
+  const err = await response.json().catch(() => ({}))
+  console.error('Anthropic error:', JSON.stringify(err))
+  throw new Error(err.error?.message || 'API request failed')
+}
 
   const data = await response.json()
   return data.content.map(c => c.text || '').join('')
