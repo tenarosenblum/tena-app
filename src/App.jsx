@@ -1,28 +1,65 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Sidebar from './components/Sidebar.jsx'
 import ChatPage from './pages/ChatPage.jsx'
 import TasksPage from './pages/TasksPage.jsx'
 import DailyPage from './pages/DailyPage.jsx'
+import { supabase } from './supabase.js'
 import './App.css'
-
-const INITIAL_TASKS = [
-  { id: 1, text: 'Schedule pediatrician appointment', category: 'family', priority: 'high', done: false, created: new Date() },
-  { id: 2, text: 'Prepare presentation for Tuesday', category: 'work', priority: 'high', done: false, created: new Date() },
-  { id: 3, text: 'Restock school snacks', category: 'home', priority: 'medium', done: false, created: new Date() },
-  { id: 4, text: '20 min walk or yoga', category: 'self', priority: 'medium', done: false, created: new Date() },
-  { id: 5, text: 'Review monthly budget', category: 'finance', priority: 'low', done: false, created: new Date() },
-]
 
 export default function App() {
   const [page, setPage] = useState('daily')
-  const [tasks, setTasks] = useState(INITIAL_TASKS)
+  const [tasks, setTasks] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  const addTask = (task) => setTasks(prev => [{ ...task, id: Date.now(), done: false, created: new Date() }, ...prev])
-  const toggleTask = (id) => setTasks(prev => prev.map(t => t.id === id ? { ...t, done: !t.done } : t))
-  const deleteTask = (id) => setTasks(prev => prev.filter(t => t.id !== id))
-  const updateTask = (id, updates) => setTasks(prev => prev.map(t => t.id === id ? { ...t, ...updates } : t))
+  useEffect(() => {
+    fetchTasks()
+  }, [])
+
+  const fetchTasks = async () => {
+    const { data, error } = await supabase
+      .from('tasks')
+      .select('*')
+      .order('created_at', { ascending: false })
+    if (!error) setTasks(data)
+    setLoading(false)
+  }
+
+  const addTask = async (task) => {
+    const { data, error } = await supabase
+      .from('tasks')
+      .insert([{ ...task, done: false }])
+      .select()
+    if (!error) setTasks(prev => [data[0], ...prev])
+  }
+
+  const toggleTask = async (id) => {
+    const task = tasks.find(t => t.id === id)
+    const { error } = await supabase
+      .from('tasks')
+      .update({ done: !task.done })
+      .eq('id', id)
+    if (!error) setTasks(prev => prev.map(t => t.id === id ? { ...t, done: !t.done } : t))
+  }
+
+  const deleteTask = async (id) => {
+    const { error } = await supabase
+      .from('tasks')
+      .delete()
+      .eq('id', id)
+    if (!error) setTasks(prev => prev.filter(t => t.id !== id))
+  }
+
+  const updateTask = async (id, updates) => {
+    const { error } = await supabase
+      .from('tasks')
+      .update(updates)
+      .eq('id', id)
+    if (!error) setTasks(prev => prev.map(t => t.id === id ? { ...t, ...updates } : t))
+  }
 
   const taskProps = { tasks, addTask, toggleTask, deleteTask, updateTask }
+
+  if (loading) return <div style={{ padding: '40px', fontFamily: 'var(--font-body)', color: 'var(--ink-muted)' }}>Loading...</div>
 
   return (
     <div className="app-shell">
