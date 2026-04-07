@@ -1,0 +1,205 @@
+.tasks-page {
+  padding: 40px 48px;
+  max-width: 720px;
+}
+
+.tasks-header {
+  margin-bottom: 28px;
+}
+
+.tasks-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.tasks-sub {
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+.add-task-card {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.add-task-input {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: none;
+  font-size: 15px;
+  color: var(--ink);
+  outline: none;
+  margin-bottom: 14px;
+}
+
+.add-task-input::placeholder { color: var(--ink-faint); }
+.add-task-input:focus { border-bottom-color: var(--terracotta); }
+
+.add-task-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.add-select {
+  padding: 7px 10px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--cream);
+  color: var(--ink-soft);
+  font-size: 13px;
+  outline: none;
+}
+
+.add-select:focus { border-color: var(--terracotta); }
+
+.add-task-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  padding: 8px 18px;
+  border-radius: var(--r-sm);
+  border: none;
+  background: var(--terracotta);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.15s;
+}
+
+.add-task-btn:hover { background: var(--terracotta-dark); }
+
+.filter-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: none;
+  font-size: 13px;
+  color: var(--ink-muted);
+  transition: all 0.15s;
+}
+
+.filter-btn:hover { background: var(--cream); color: var(--ink); }
+.filter-btn.active { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border);
+  border-radius: var(--r-md);
+  transition: all 0.15s;
+}
+
+.task-card.priority-high { border-left-color: var(--terracotta); }
+.task-card.priority-medium { border-left-color: var(--amber); }
+.task-card.priority-low { border-left-color: var(--ink-faint); }
+.task-card.done { opacity: 0.55; }
+
+.task-card:hover { border-color: var(--border-strong); }
+
+.task-toggle {
+  background: none;
+  border: none;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.task-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-text {
+  display: block;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  margin-bottom: 5px;
+}
+
+.task-card.done .task-text {
+  text-decoration: line-through;
+  color: var(--ink-muted);
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cat-pill {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.priority-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.priority-dot[data-priority="high"] { background: var(--terracotta); }
+.priority-dot[data-priority="medium"] { background: var(--amber); }
+.priority-dot[data-priority="low"] { background: var(--ink-faint); }
+
+.priority-label {
+  font-size: 12px;
+  color: var(--ink-muted);
+  text-transform: capitalize;
+}
+
+.task-delete {
+  background: none;
+  border: none;
+  color: var(--ink-faint);
+  opacity: 0;
+  transition: opacity 0.15s;
+  display: flex;
+  align-items: center;
+}
+
+.task-card:hover .task-delete { opacity: 1; }
+.task-delete:hover { color: var(--terracotta); }
+
+.empty-state {
+  text-align: center;
+  padding: 40px 0;
+  font-size: 15px;
+  color: var(--ink-muted);
+  font-style: italic;
+  font-family: var(--font-display);
+}
+
+@media (max-width: 768px) {
+  .tasks-page { padding: 24px 20px; }
+}
