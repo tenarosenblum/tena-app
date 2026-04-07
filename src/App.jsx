@@ -1,3 +1,4 @@
+import FilesPage from './pages/FilesPage.jsx'
 import React, { useState, useEffect } from 'react'
 import Sidebar from './components/Sidebar.jsx'
 import ChatPage from './pages/ChatPage.jsx'
@@ -68,6 +69,7 @@ export default function App() {
         {page === 'daily' && <DailyPage {...taskProps} setPage={setPage} />}
         {page === 'chat' && <ChatPage />}
         {page === 'tasks' && <TasksPage {...taskProps} />}
+        {page === 'files' && <FilesPage />}
       </main>
     </div>
   )
