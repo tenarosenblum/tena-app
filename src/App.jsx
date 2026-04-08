@@ -6,6 +6,7 @@ import TasksPage from './pages/TasksPage.jsx'
 import DailyPage from './pages/DailyPage.jsx'
 import { supabase } from './supabase.js'
 import './App.css'
+import RemindersPage from './pages/RemindersPage.jsx'
 
 export default function App() {
   const [page, setPage] = useState('daily')
@@ -69,6 +70,7 @@ export default function App() {
         {page === 'daily' && <DailyPage {...taskProps} setPage={setPage} />}
         {page === 'chat' && <ChatPage />}
         {page === 'tasks' && <TasksPage {...taskProps} />}
+        {page === 'reminders' && <RemindersPage />}
         {page === 'files' && <FilesPage />}
       </main>
     </div>

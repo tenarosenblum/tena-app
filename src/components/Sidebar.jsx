@@ -1,11 +1,12 @@
 import React from 'react'
-import { LayoutDashboard, MessageCircle, CheckSquare, Sparkles, FolderOpen } from 'lucide-react'
+import { LayoutDashboard, MessageCircle, CheckSquare, Sparkles, FolderOpen, Bell } from 'lucide-react'
 import './Sidebar.css'
 
 const NAV = [
   { id: 'daily', label: 'Today', icon: LayoutDashboard },
   { id: 'chat', label: 'Chat', icon: MessageCircle },
   { id: 'tasks', label: 'Tasks', icon: CheckSquare },
+  { id: 'reminders', label: 'Reminders', icon: Bell },
   { id: 'files', label: 'Files', icon: FolderOpen },
 ]
 
