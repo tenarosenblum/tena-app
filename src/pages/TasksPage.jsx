@@ -5,6 +5,7 @@ import './TasksPage.css'
 const CATEGORIES = [
   { id: 'family', label: 'Family', bg: 'var(--terracotta-light)', color: 'var(--terracotta-dark)' },
   { id: 'work', label: 'Work', bg: 'var(--dusty-blue-light)', color: 'var(--dusty-blue)' },
+  { id: 'personal', label: 'Personal', bg: 'var(--lavender-light)', color: 'var(--lavender)' },
   { id: 'self', label: 'Self-care', bg: 'var(--sage-light)', color: 'var(--sage)' },
   { id: 'home', label: 'Home', bg: 'var(--amber-light)', color: 'var(--amber)' },
   { id: 'finance', label: 'Finance', bg: 'var(--lavender-light)', color: 'var(--lavender)' },
