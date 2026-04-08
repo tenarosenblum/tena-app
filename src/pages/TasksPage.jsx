@@ -20,13 +20,15 @@ export default function TasksPage({ tasks, addTask, toggleTask, deleteTask }) {
   const [newText, setNewText] = useState('')
   const [newCat, setNewCat] = useState('family')
   const [newPriority, setNewPriority] = useState('medium')
+  const [showToday, setShowToday] = useState(false)
   const [filter, setFilter] = useState('all')
 
   const handleAdd = () => {
-    if (!newText.trim()) return
-    addTask({ text: newText.trim(), category: newCat, priority: newPriority })
-    setNewText('')
-  }
+  if (!newText.trim()) return
+  addTask({ text: newText.trim(), category: newCat, priority: newPriority, show_today: showToday })
+  setNewText('')
+  setShowToday(false)
+}
 
   const filtered = filter === 'all' ? tasks
     : filter === 'done' ? tasks.filter(t => t.done)
@@ -53,29 +55,37 @@ export default function TasksPage({ tasks, addTask, toggleTask, deleteTask }) {
           onKeyDown={e => e.key === 'Enter' && handleAdd()}
         />
         <div className="add-task-controls">
-          <select
-            className="add-select"
-            value={newCat}
-            onChange={e => setNewCat(e.target.value)}
-          >
-            {CATEGORIES.map(c => (
-              <option key={c.id} value={c.id}>{c.label}</option>
-            ))}
-          </select>
-          <select
-            className="add-select"
-            value={newPriority}
-            onChange={e => setNewPriority(e.target.value)}
-          >
-            {PRIORITIES.map(p => (
-              <option key={p.id} value={p.id}>{p.label} priority</option>
-            ))}
-          </select>
-          <button className="add-task-btn" onClick={handleAdd}>
-            <Plus size={16} />
-            Add
-          </button>
-        </div>
+  <select
+    className="add-select"
+    value={newCat}
+    onChange={e => setNewCat(e.target.value)}
+  >
+    {CATEGORIES.map(c => (
+      <option key={c.id} value={c.id}>{c.label}</option>
+    ))}
+  </select>
+  <select
+    className="add-select"
+    value={newPriority}
+    onChange={e => setNewPriority(e.target.value)}
+  >
+    {PRIORITIES.map(p => (
+      <option key={p.id} value={p.id}>{p.label} priority</option>
+    ))}
+  </select>
+  <label className="today-toggle">
+    <input
+      type="checkbox"
+      checked={showToday}
+      onChange={e => setShowToday(e.target.checked)}
+    />
+    Show on Today
+  </label>
+  <button className="add-task-btn" onClick={handleAdd}>
+    <Plus size={16} />
+    Add
+  </button>
+</div>
       </div>
 
       <div className="filter-row">

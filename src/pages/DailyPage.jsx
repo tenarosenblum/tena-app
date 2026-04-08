@@ -20,7 +20,7 @@ const QUICK_PROMPTS = [
 
 export default function DailyPage({ tasks, toggleTask, setPage }) {
   const now = new Date()
-  const todayTasks = tasks.slice(0, 5)
+  const todayTasks = tasks.filter(t => t.show_today && !t.done).slice(0, 5)
   const done = tasks.filter(t => t.done).length
   const total = tasks.length
   const pct = total ? Math.round((done / total) * 100) : 0

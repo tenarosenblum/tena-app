@@ -203,3 +203,19 @@
 @media (max-width: 768px) {
   .tasks-page { padding: 24px 20px; }
 }
+
+.today-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+.today-toggle input {
+  accent-color: var(--terracotta);
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+}
