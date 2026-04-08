@@ -1,0 +1,47 @@
+.health-page {
+  padding: 40px 48px;
+  max-width: 860px;
+}
+
+.health-header {
+  margin-bottom: 28px;
+}
+
+.health-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.health-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.health-tab {
+  padding: 7px 20px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: none;
+  font-size: 13px;
+  color: var(--ink-muted);
+  transition: all 0.15s;
+}
+
+.health-tab:hover {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.health-tab.active {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .health-page { padding: 24px 20px; }
+}
