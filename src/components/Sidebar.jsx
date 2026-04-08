@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutDashboard, MessageCircle, CheckSquare, Sparkles, FolderOpen, Bell } from 'lucide-react'
+import { LayoutDashboard, MessageCircle, CheckSquare, Sparkles, FolderOpen, Bell, Heart } from 'lucide-react'
 import './Sidebar.css'
 
 const NAV = [
@@ -7,6 +7,7 @@ const NAV = [
   { id: 'chat', label: 'Chat', icon: MessageCircle },
   { id: 'tasks', label: 'Tasks', icon: CheckSquare },
   { id: 'reminders', label: 'Reminders', icon: Bell },
+  { id: 'health', label: 'Health', icon: Heart },
   { id: 'files', label: 'Files', icon: FolderOpen },
 ]
 
