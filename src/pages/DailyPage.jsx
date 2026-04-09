@@ -110,11 +110,7 @@ export default function DailyPage({ tasks, toggleTask, setPage, setSelectedMood 
               See all <ArrowRight size={14} />
             </button>
           </div>
-          <section className="daily-section quote-section">
-  <div className="quote-mark">"</div>
-  <p className="quote-text">{todayQuote.text}</p>
-  <p className="quote-author">— {todayQuote.author}</p>
-</section>
+          
           <div className="task-list">
             {todayTasks.map(task => {
               const cat = CATEGORY_COLORS[task.category] || CATEGORY_COLORS.home
@@ -126,6 +122,11 @@ export default function DailyPage({ tasks, toggleTask, setPage, setSelectedMood 
                       : <Circle size={18} color="var(--ink-faint)" />
                     }
                   </div>
+                  <section className="daily-section quote-section">
+  <div className="quote-mark">"</div>
+  <p className="quote-text">{todayQuote.text}</p>
+  <p className="quote-author">— {todayQuote.author}</p>
+</section>
                   <span className="task-text">{task.text}</span>
                   <span className="task-cat-pill" style={{ background: cat.bg, color: cat.text }}>
                     {cat.label}
