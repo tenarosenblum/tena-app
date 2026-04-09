@@ -5,7 +5,7 @@ import './RemindersPage.css'
 
 const IMPORTANCE = [
   { id: 'urgent', label: 'Urgent', color: 'var(--terracotta)', bg: 'var(--terracotta-light)' },
-  { id: 'medium', label: 'Medium', color: 'var(--amber)', bg: 'var(--amber-light)' },
+  { id: 'medium', label: 'Medium', color: '#7A7ABF', bg: '#EDEDFF' },
   { id: 'low', label: 'Low', color: 'var(--sage)', bg: 'var(--sage-light)' },
 ]
 
