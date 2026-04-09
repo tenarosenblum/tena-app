@@ -122,11 +122,7 @@ export default function DailyPage({ tasks, toggleTask, setPage, setSelectedMood 
                       : <Circle size={18} color="var(--ink-faint)" />
                     }
                   </div>
-                  <section className="daily-section quote-section">
-  <div className="quote-mark">"</div>
-  <p className="quote-text">{todayQuote.text}</p>
-  <p className="quote-author">— {todayQuote.author}</p>
-</section>
+                  
                   <span className="task-text">{task.text}</span>
                   <span className="task-cat-pill" style={{ background: cat.bg, color: cat.text }}>
                     {cat.label}
@@ -183,6 +179,11 @@ export default function DailyPage({ tasks, toggleTask, setPage, setSelectedMood 
 </div>
 <p className="mood-hint">Tap to log your mood</p>
         </section>
+        <section className="daily-section quote-section">
+  <div className="quote-mark">"</div>
+  <p className="quote-text">{todayQuote.text}</p>
+  <p className="quote-author">— {todayQuote.author}</p>
+</section>
       </div>
     </div>
   )
