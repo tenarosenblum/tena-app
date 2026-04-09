@@ -180,7 +180,7 @@ export default function DailyPage({ tasks, toggleTask, setPage, setSelectedMood 
 <p className="mood-hint">Tap to log your mood</p>
         </section>
         <section className="daily-section quote-section">
-  <div className="quote-mark">"</div>
+  <p className="quote-title">Quote of the day</p>
   <p className="quote-text">{todayQuote.text}</p>
   <p className="quote-author">— {todayQuote.author}</p>
 </section>
