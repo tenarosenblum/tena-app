@@ -4,11 +4,11 @@ import { format, parseISO } from 'date-fns'
 import './MoodTracker.css'
 
 const MOODS = [
-  { id: 'great', label: 'Great', color: '#FFFF00', bg: '#FAFADC' },
+  { id: 'great', label: 'Great', color: '#FBEC5D', bg: '#FFFFE6' },
   { id: 'good', label: 'Good', color: '#2AAA8A', bg: '#E6EDE7' },
   { id: 'okay', label: 'Okay', color: '#FF82EC', bg: '#f2d9de' },
-  { id: 'tired', label: 'Tired', color: '#3A6A7A', bg: '#d9ebf2' },
-  { id: 'anxious', label: 'Anxious', color: '#6A5A9A', bg: '#e2daf2' },
+  { id: 'tired', label: 'Tired', color: '#82C9FF', bg: '#d9ebf2' },
+  { id: 'anxious', label: 'Anxious', color: '#6A5A9A', bg: '#dfccfc' },
   { id: 'overwhelmed', label: 'Overwhelmed', color: '#C9614A', bg: '#F5E8E4' },
 ]
 
