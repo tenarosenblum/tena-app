@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import { CheckCircle2, Circle, ArrowRight, Sparkles } from 'lucide-react'
 import './DailyPage.css'
+
 
 const QUOTES = [
   { text: "I took a deep breath and listened to the old brag of my heart: I am, I am, I am.", author: "Sylvia Plath" },
@@ -86,6 +88,42 @@ export default function DailyPage({ tasks, toggleTask, setPage, setSelectedMood 
 
   const todayQuote = QUOTES[new Date().getDate() % QUOTES.length]
 
+  const [weather, setWeather] = useState(null)
+
+useEffect(() => {
+  navigator.geolocation.getCurrentPosition(async (pos) => {
+    const { latitude, longitude } = pos.coords
+    const res = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=relativehumidity_2m&temperature_unit=fahrenheit`
+    )
+    const data = await res.json()
+    setWeather(data.current_weather)
+  })
+}, [])
+
+const getWeatherLabel = (code) => {
+  if (code === 0) return 'Clear sky'
+  if (code <= 2) return 'Partly cloudy'
+  if (code === 3) return 'Overcast'
+  if (code <= 49) return 'Foggy'
+  if (code <= 59) return 'Drizzle'
+  if (code <= 69) return 'Rainy'
+  if (code <= 79) return 'Snowy'
+  if (code <= 99) return 'Stormy'
+  return 'Unknown'
+}
+
+const getWeatherIcon = (code) => {
+  if (code === 0) return '☀️'
+  if (code <= 2) return '⛅'
+  if (code === 3) return '☁️'
+  if (code <= 49) return '🌫️'
+  if (code <= 69) return '🌧️'
+  if (code <= 79) return '❄️'
+  if (code <= 99) return '⛈️'
+  return '🌡️'
+}
+
   return (
     <div className="daily-page">
       <header className="daily-header">
@@ -154,32 +192,19 @@ export default function DailyPage({ tasks, toggleTask, setPage, setSelectedMood 
           </div>
         </section>
 
-        <section className="daily-section mood-section">
-          <h2 className="section-title">How are you feeling?</h2>
-         <div className="mood-grid">
-  {[
-    { label: 'Anxious', id: 'anxious' },
-    { label: 'Tired', id: 'tired' },
-    { label: 'Okay', id: 'okay' },
-    { label: 'Good', id: 'good' },
-  ].map(mood => (
-    <button
-      key={mood.id}
-      className="mood-btn"
-      onClick={() => {
-        setSelectedMood(mood.id)
-        setPage('health')
-      }}
-    >
-      {mood.label}
-    </button>
-  ))}
-</div>
-        </section>
-        <section className="daily-section quote-section">
-  <p className="quote-title">Quote of the day</p>
-  <p className="quote-text">{todayQuote.text}</p>
-  <p className="quote-author">— {todayQuote.author}</p>
+<section className="daily-section weather-section">
+  <div className="weather-sun" />
+  <h2 className="section-title">Weather</h2>
+  {!weather ? (
+    <div className="weather-loading">Fetching your location...</div>
+  ) : (
+    <div className="weather-content">
+      <div className="weather-icon">{getWeatherIcon(weather.weathercode)}</div>
+      <div className="weather-temp">{Math.round(weather.temperature)}°F</div>
+      <div className="weather-label">{getWeatherLabel(weather.weathercode)}</div>
+      <div className="weather-wind">Wind {Math.round(weather.windspeed)} mph</div>
+    </div>
+  )}
 </section>
       </div>
     </div>

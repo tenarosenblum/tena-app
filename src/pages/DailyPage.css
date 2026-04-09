@@ -179,33 +179,60 @@
   background: var(--terracotta-light);
 }
 
-.mood-grid {
+.weather-section {
+  grid-column: 2;
+  grid-row: 2;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
 }
 
-.mood-btn {
-  padding: 10px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  background: none;
-  font-size: 12px;
+.weather-sun {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 90px;
+  height: 90px;
+  background: #FFE566;
+  border-radius: 50%;
+  opacity: 0.4;
+}
+.weather-loading {
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-style: italic;
+  padding: 12px 0;
+}
+
+.weather-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 6px;
+  padding: 12px 0;
+}
+
+.weather-icon {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.weather-temp {
+  font-family: var(--font-display);
+  font-size: 40px;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.weather-label {
+  font-size: 14px;
   color: var(--ink-soft);
-  transition: all 0.15s;
-  text-align: center;
-  width: 100%;
-  display: block;
 }
 
-.mood-btn:hover {
-  background: var(--terracotta);
-  color: white;
-  border-color: var(--terracotta);
-}
-
-.mood-hint {
+.weather-wind {
   font-size: 12px;
   color: var(--ink-muted);
 }
