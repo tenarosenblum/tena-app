@@ -163,7 +163,6 @@ export default function DailyPage({ tasks, toggleTask, setPage, setSelectedMood 
     { label: 'Tired', id: 'tired' },
     { label: 'Okay', id: 'okay' },
     { label: 'Good', id: 'good' },
-    { label: 'Great', id: 'great' },
   ].map(mood => (
     <button
       key={mood.id}
