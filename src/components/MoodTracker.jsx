@@ -4,7 +4,7 @@ import { format, parseISO } from 'date-fns'
 import './MoodTracker.css'
 
 const MOODS = [
-  { id: 'great', label: 'Great', color: '#E4D00A', bg: '#FFFFE6' },
+  { id: 'great', label: 'Great', color: '#E4D00A', bg: '#FFFFE4' },
   { id: 'good', label: 'Good', color: '#228B22', bg: '#F2FFF2' },
   { id: 'okay', label: 'Okay', color: '#FF82EC', bg: '#FEF2FF' },
   { id: 'tired', label: 'Tired', color: '#4B9CD3', bg: '#F2F9FF' },
