@@ -180,8 +180,8 @@
 }
 
 .mood-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 8px;
   margin-bottom: 10px;
 }
@@ -196,6 +196,7 @@
   transition: all 0.15s;
   text-align: center;
   width: 100%;
+  display: block;
 }
 
 .mood-btn:hover {
