@@ -159,7 +159,7 @@ export default function DailyPage({ tasks, toggleTask, setPage, setSelectedMood 
           <h2 className="section-title">How are you feeling?</h2>
          <div className="mood-grid">
   {[
-    { label: 'Overwhelmed', id: 'overwhelmed' },
+    { label: 'Anxious', id: 'anxious' },
     { label: 'Tired', id: 'tired' },
     { label: 'Okay', id: 'okay' },
     { label: 'Good', id: 'good' },
