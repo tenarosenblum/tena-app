@@ -5,11 +5,11 @@ import './MoodTracker.css'
 
 const MOODS = [
   { id: 'great', label: 'Great', color: '#FFCE1B', bg: '#FFFFE6' },
-  { id: 'good', label: 'Good', color: '#228B22', bg: '#E6EDE7' },
+  { id: 'good', label: 'Good', color: '#228B22', bg: '#F2FFF2' },
   { id: 'okay', label: 'Okay', color: '#FF82EC', bg: '#f2d9de' },
   { id: 'tired', label: 'Tired', color: '#4B9CD3', bg: '#d9ebf2' },
-  { id: 'anxious', label: 'Anxious', color: '#6A5A9A', bg: '#F4E9FC' },
-  { id: 'overwhelmed', label: 'Overwhelmed', color: '#722F37', bg: '#F5E8E4' },
+  { id: 'anxious', label: 'Anxious', color: '#6A5A9A', bg: '#FAE6FF' },
+  { id: 'overwhelmed', label: 'Overwhelmed', color: '#D22B2B', bg: '#F5E8E4' },
 ]
 
 export default function MoodTracker({ initialMood = null }) {
