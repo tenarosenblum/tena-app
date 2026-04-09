@@ -11,6 +11,7 @@ import HealthPage from './pages/HealthPage.jsx'
 
 export default function App() {
   const [page, setPage] = useState('daily')
+  const [selectedMood, setSelectedMood] = useState(null)
   const [tasks, setTasks] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -68,12 +69,12 @@ export default function App() {
     <div className="app-shell">
       <Sidebar page={page} setPage={setPage} tasks={tasks} />
       <main className="app-main">
-        {page === 'daily' && <DailyPage {...taskProps} setPage={setPage} />}
+        {page === 'daily' && <DailyPage {...taskProps} setPage={setPage} setSelectedMood={setSelectedMood} />}
         {page === 'chat' && <ChatPage />}
         {page === 'tasks' && <TasksPage {...taskProps} />}
         {page === 'reminders' && <RemindersPage />}
         {page === 'files' && <FilesPage />}
-        {page === 'health' && <HealthPage />}
+        {page === 'health' && <HealthPage initialMood={selectedMood} />}
       </main>
     </div>
   )

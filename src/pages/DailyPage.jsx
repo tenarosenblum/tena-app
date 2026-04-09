@@ -18,7 +18,7 @@ const QUICK_PROMPTS = [
   'What should I tackle first today?',
 ]
 
-export default function DailyPage({ tasks, toggleTask, setPage }) {
+export default function DailyPage({ tasks, toggleTask, setPage, setSelectedMood }) {
   const now = new Date()
   const todayTasks = tasks.filter(t => t.show_today && !t.done).slice(0, 5)
   const done = tasks.filter(t => t.done).length
@@ -93,14 +93,27 @@ export default function DailyPage({ tasks, toggleTask, setPage }) {
 
         <section className="daily-section mood-section">
           <h2 className="section-title">How are you feeling?</h2>
-          <div className="mood-grid">
-            {['Overwhelmed', 'Tired', 'OK', 'Good', 'Great'].map(mood => (
-              <button key={mood} className="mood-btn" onClick={() => setPage('chat')}>
-                {mood}
-              </button>
-            ))}
-          </div>
-          <p className="mood-hint">Tap to chat about your day</p>
+         <div className="mood-grid">
+  {[
+    { label: 'Overwhelmed', id: 'overwhelmed' },
+    { label: 'Tired', id: 'tired' },
+    { label: 'Okay', id: 'okay' },
+    { label: 'Good', id: 'good' },
+    { label: 'Great', id: 'great' },
+  ].map(mood => (
+    <button
+      key={mood.id}
+      className="mood-btn"
+      onClick={() => {
+        setSelectedMood(mood.id)
+        setPage('health')
+      }}
+    >
+      {mood.label}
+    </button>
+  ))}
+</div>
+<p className="mood-hint">Tap to log your mood</p>
         </section>
       </div>
     </div>

@@ -3,6 +3,7 @@ import SleepTracker from '../components/SleepTracker.jsx'
 import WorkoutTracker from '../components/WorkoutTracker.jsx'
 import WaterTracker from '../components/WaterTracker.jsx'
 import FoodTracker from '../components/FoodTracker.jsx'
+import MoodTracker from '../components/MoodTracker.jsx'
 import './HealthPage.css'
 
 const HEALTH_TABS = [
@@ -10,10 +11,11 @@ const HEALTH_TABS = [
   { id: 'workout', label: 'Workout' },
   { id: 'water', label: 'Water' },
   { id: 'food', label: 'Food' },
+  { id: 'mood', label: 'Mood' },
 ]
 
-export default function HealthPage() {
-  const [activeTab, setActiveTab] = useState('sleep')
+export default function HealthPage({ initialMood = null }) {
+  const [activeTab, setActiveTab] = useState(initialMood ? 'mood' : 'sleep')
 
   return (
     <div className="health-page">
@@ -35,6 +37,7 @@ export default function HealthPage() {
       {activeTab === 'workout' && <WorkoutTracker />}
       {activeTab === 'water' && <WaterTracker />}
       {activeTab === 'food' && <FoodTracker />}
+      {activeTab === 'mood' && <MoodTracker initialMood={initialMood} />}
     </div>
   )
 }
