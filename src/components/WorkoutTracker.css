@@ -1,0 +1,167 @@
+.workout-tracker { width: 100%; }
+
+.tracker-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.tracker-card {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 24px;
+}
+
+.tracker-card-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.tracker-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.tracker-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tracker-input {
+  padding: 8px 12px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 14px;
+  outline: none;
+  font-family: var(--font-body);
+}
+
+.tracker-input:focus { border-color: var(--sage); }
+
+.tracker-save-btn {
+  width: 100%;
+  padding: 11px;
+  border-radius: var(--r-md);
+  border: none;
+  background: var(--sage);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 4px;
+  margin-bottom: 16px;
+  transition: background 0.15s;
+}
+
+.tracker-save-btn:hover:not(:disabled) { background: var(--ink); }
+.tracker-save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.workout-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.workout-stat-number {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--sage);
+}
+
+.workout-stat-label {
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+.tracker-loading, .tracker-empty {
+  font-size: 14px;
+  color: var(--ink-muted);
+  font-style: italic;
+  padding: 12px 0;
+}
+
+.workout-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.workout-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  gap: 12px;
+  transition: border-color 0.15s;
+}
+
+.workout-row:hover { border-color: var(--border-strong); }
+
+.workout-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.workout-type {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.workout-date {
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+.workout-notes {
+  font-size: 12px;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+.workout-row-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.workout-duration {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--sage);
+}
+
+.tracker-delete-btn {
+  background: none;
+  border: none;
+  color: var(--ink-faint);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: all 0.15s;
+}
+
+.workout-row:hover .tracker-delete-btn { opacity: 1; }
+.tracker-delete-btn:hover { color: var(--terracotta); }
+
+@media (max-width: 768px) {
+  .tracker-grid { grid-template-columns: 1fr; }
+}
