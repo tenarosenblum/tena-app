@@ -245,3 +245,12 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
+
+.quote-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
