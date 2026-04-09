@@ -1,7 +1,7 @@
 .food-tracker { width: 100%; }
 
-.food-save-btn { background: #FFBE98 !important; color: #6B3F1A !important; }
-.food-save-btn:hover:not(:disabled) { background: #e0a070 !important; }
+.food-save-btn { background: #FFF5EE !important; color: #FA8072 !important; }
+.food-save-btn:hover:not(:disabled) { background: #FFF5EE !important; }
 
 .meal-type-selector {
   display: flex;
@@ -22,8 +22,8 @@
 .meal-type-btn:hover { background: var(--cream); color: var(--ink); }
 .meal-type-btn.active {
   background: #FFF0E8;
-  color: #C47A3A;
-  border-color: #FFBE98;
+  color: #FA8072;
+  border-color: #FFF5EE;
   font-weight: 500;
 }
 
@@ -39,7 +39,7 @@
 .food-count-number {
   font-family: var(--font-display);
   font-size: 32px;
-  color: #FFBE98;
+  color: #FFF5EE;
 }
 
 .food-count-label {
