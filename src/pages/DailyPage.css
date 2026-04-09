@@ -73,13 +73,12 @@
 }
 
 .ask-section {
-  grid-column: 2;
-  grid-row: 1;
+  grid-column: 1 / -1;
+  grid-row: auto;
 }
 
 .mood-section {
-  grid-column: 2;
-  grid-row: 2;
+  grid-column: 1 / -1;
 }
 
 .section-header {
@@ -183,21 +182,20 @@
 .mood-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 6px;
+  gap: 8px;
   margin-bottom: 10px;
 }
 
 .mood-btn {
-  padding: 7px 4px;
+  padding: 10px 4px;
   border-radius: 20px;
   border: 1px solid var(--border);
   background: none;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink-soft);
   transition: all 0.15s;
-  width: 100%;
   text-align: center;
-  white-space: nowrap;
+  width: 100%;
 }
 
 .mood-btn:hover {
