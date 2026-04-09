@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import { CheckCircle2, Circle, ArrowRight, Sparkles } from 'lucide-react'
