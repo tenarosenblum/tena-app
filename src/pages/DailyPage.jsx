@@ -175,7 +175,6 @@ export default function DailyPage({ tasks, toggleTask, setPage, setSelectedMood 
     </button>
   ))}
 </div>
-<p className="mood-hint">Tap to log your mood</p>
         </section>
         <section className="daily-section quote-section">
   <p className="quote-title">Quote of the day</p>
