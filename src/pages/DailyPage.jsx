@@ -74,7 +74,6 @@ const CATEGORY_COLORS = {
 const QUICK_PROMPTS = [
   'Help me plan meals for the week',
   'Give me a 5-minute self-care idea',
-  'Help me write a quick work email',
   'What should I tackle first today?',
 ]
 
