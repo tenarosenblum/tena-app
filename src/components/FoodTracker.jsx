@@ -62,15 +62,40 @@ export default function FoodTracker() {
           <div className="tracker-field">
             <label className="tracker-label">Meal</label>
             <div className="meal-type-selector">
-              {MEAL_TYPES.map(m => (
-                <button
-                  key={m}
-                  className={`meal-type-btn ${mealType === m ? 'active' : ''}`}
-                  onClick={() => setMealType(m)}
-                >
-                  {m}
-                </button>
-              ))}
+              {Object.entries(
+  logs.reduce((acc, log) => {
+    if (!acc[log.date]) acc[log.date] = []
+    acc[log.date].push(log)
+    return acc
+  }, {})
+)
+.sort(([a], [b]) => b.localeCompare(a))
+.slice(0, 7)
+.map(([date, entries]) => (
+  <div key={date} className="food-group">
+    <div className="food-group-label">{format(parseISO(date), 'EEEE, MMM d')}</div>
+    {MEAL_TYPES.map(meal => {
+      const items = entries.filter(l => l.meal_type === meal)
+      if (items.length === 0) return null
+      return (
+        <div key={meal} className="food-meal-section">
+          <div className="food-meal-type">{meal}</div>
+          {items.map(log => (
+            <div key={log.id} className="food-row">
+              <div className="food-row-info">
+                <span className="food-name">{log.name}</span>
+                {log.notes && <span className="food-notes">{log.notes}</span>}
+              </div>
+              <button className="tracker-delete-btn" onClick={() => handleDelete(log.id)}>
+                <Trash2 size={14} />
+              </button>
+            </div>
+          ))}
+        </div>
+      )
+    })}
+  </div>
+))}
             </div>
           </div>
 

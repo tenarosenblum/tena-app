@@ -52,12 +52,27 @@
 }
 
 .food-group-label {
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 10px;
+  margin-top: 4px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.food-meal-section {
+  margin-bottom: 10px;
+}
+
+.food-meal-type {
+  font-size: 11px;
   font-weight: 500;
   color: var(--ink-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  margin-left: 2px;
 }
 
 .food-row {
