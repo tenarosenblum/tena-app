@@ -1,8 +1,10 @@
+import { Trash2 } from 'lucide-react'
 import React, { useState, useEffect } from 'react'
 import { supabase } from '../supabase.js'
 import { format, subDays, parseISO } from 'date-fns'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts'
 import './SleepTracker.css'
+
 
 const QUALITY = [
   { id: 'great', label: 'Great', color: 'var(--sage)' },
@@ -61,6 +63,10 @@ export default function SleepTracker() {
     }
     setSaving(false)
   }
+  const deleteLog = async (id) => {
+  const { error } = await supabase.from('sleep_logs').delete().eq('id', id)
+  if (!error) setLogs(prev => prev.filter(l => l.id !== id))
+}
 
   const hours = calculateHours(bedtime, wakeTime)
 
@@ -187,6 +193,7 @@ export default function SleepTracker() {
                   <span className="log-hours">{Number(log.hours_slept).toFixed(1)}h</span>
                   <span className="log-quality" style={{ color: q?.color }}>{q?.label}</span>
                   <span className="log-times">{log.bedtime} → {log.wake_time}</span>
+                  <button className="log-delete" onClick={() => deleteLog(log.id)}><Trash2 size={13} /></button>
                 </div>
               )
             })}

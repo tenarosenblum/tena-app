@@ -198,6 +198,26 @@
 
 .log-date { color: var(--ink-soft); flex: 1; }
 .log-hours { font-weight: 500; color: var(--ink); min-width: 32px; }
+.log-delete {
+  background: none;
+  border: none;
+  color: var(--ink-faint);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.15s, color 0.15s;
+}
+
+.sleep-log-row:hover .log-delete {
+  opacity: 1;
+}
+
+.log-delete:hover {
+  color: var(--terracotta);
+}
 .log-quality { min-width: 44px; font-weight: 500; }
 .log-times { color: var(--ink-muted); font-size: 12px; }
 
