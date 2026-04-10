@@ -96,7 +96,9 @@ useEffect(() => {
       `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&hourly=relativehumidity_2m&temperature_unit=fahrenheit`
     )
     const data = await res.json()
-    setWeather(data.current_weather)
+    const currentHour = new Date().getHours()
+    const humidity = data.hourly?.relativehumidity_2m?.[currentHour] ?? null
+    setWeather({ ...data.current_weather, humidity })
   })
 }, [])
 
@@ -110,17 +112,6 @@ const getWeatherLabel = (code) => {
   if (code <= 79) return 'Snowy'
   if (code <= 99) return 'Stormy'
   return 'Unknown'
-}
-
-const getWeatherIcon = (code) => {
-  if (code === 0) return '☀️'
-  if (code <= 2) return '⛅'
-  if (code === 3) return '☁️'
-  if (code <= 49) return '🌫️'
-  if (code <= 69) return '🌧️'
-  if (code <= 79) return '❄️'
-  if (code <= 99) return '⛈️'
-  return '🌡️'
 }
 
   return (
@@ -192,16 +183,26 @@ const getWeatherIcon = (code) => {
         </section>
 
 <section className="daily-section weather-section">
-  <div className="weather-sun" />
   <h2 className="section-title">Weather</h2>
   {!weather ? (
     <div className="weather-loading">Fetching your location...</div>
   ) : (
     <div className="weather-content">
-      <div className="weather-icon">{getWeatherIcon(weather.weathercode)}</div>
+      <div className="weather-today">today</div>
       <div className="weather-temp">{Math.round(weather.temperature)}°F</div>
       <div className="weather-label">{getWeatherLabel(weather.weathercode)}</div>
-      <div className="weather-wind">Wind {Math.round(weather.windspeed)} mph</div>
+      <div className="weather-divider" />
+      <div className="weather-stats">
+        <div className="weather-stat">
+          <span className="weather-stat-label">wind</span>
+          <span className="weather-stat-value">{Math.round(weather.windspeed)} mph</span>
+        </div>
+        <div className="weather-stat-sep" />
+        <div className="weather-stat">
+          <span className="weather-stat-label">humidity</span>
+          <span className="weather-stat-value">{weather.humidity ?? '—'}%</span>
+        </div>
+      </div>
     </div>
   )}
 </section>
