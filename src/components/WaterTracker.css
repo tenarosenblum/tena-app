@@ -1,3 +1,95 @@
+/* ── Shared tracker styles ── */
+.tracker-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.tracker-card {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 24px;
+}
+
+.tracker-card-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.tracker-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.tracker-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tracker-input {
+  padding: 8px 12px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--cream);
+  color: var(--ink);
+  font-size: 14px;
+  outline: none;
+  font-family: var(--font-body);
+}
+
+.tracker-input:focus { border-color: var(--sage); }
+
+.tracker-save-btn {
+  width: 100%;
+  padding: 11px;
+  border-radius: var(--r-md);
+  border: none;
+  background: var(--sage);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 4px;
+  margin-bottom: 16px;
+  transition: background 0.15s;
+}
+
+.tracker-save-btn:hover:not(:disabled) { background: var(--ink); }
+.tracker-save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.tracker-loading, .tracker-empty {
+  font-size: 14px;
+  color: var(--ink-muted);
+  font-style: italic;
+  padding: 12px 0;
+}
+
+.tracker-delete-btn {
+  background: none;
+  border: none;
+  color: var(--ink-faint);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: all 0.15s;
+}
+
+.tracker-delete-btn:hover { color: var(--terracotta); }
+
+@media (max-width: 768px) {
+  .tracker-grid { grid-template-columns: 1fr; }
+}
+
 .water-tracker { width: 100%; }
 
 .water-card {
