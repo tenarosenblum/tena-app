@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { supabase } from '../supabase.js'
 import { format, parseISO } from 'date-fns'
-import { Plus, Trash2 } from 'lucide-react'
+import { Trash2 } from 'lucide-react'
 import './WorkoutTracker.css'
 
 const WORKOUT_TYPES = [
@@ -14,6 +14,7 @@ export default function WorkoutTracker() {
   const [date, setDate] = useState(format(new Date(), 'yyyy-MM-dd'))
   const [type, setType] = useState('Running')
   const [duration, setDuration] = useState('')
+  const [miles, setMiles] = useState('')
   const [notes, setNotes] = useState('')
   const [saving, setSaving] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -34,11 +35,18 @@ export default function WorkoutTracker() {
     setSaving(true)
     const { data, error } = await supabase
       .from('workouts')
-      .insert([{ date, type, duration_minutes: parseInt(duration), notes }])
+      .insert([{
+        date,
+        type,
+        duration_minutes: parseInt(duration),
+        miles: miles ? parseFloat(miles) : null,
+        notes
+      }])
       .select()
     if (!error) {
       setWorkouts(prev => [data[0], ...prev])
       setDuration('')
+      setMiles('')
       setNotes('')
     }
     setSaving(false)
@@ -49,14 +57,15 @@ export default function WorkoutTracker() {
     if (!error) setWorkouts(prev => prev.filter(w => w.id !== id))
   }
 
-  const totalThisWeek = workouts
-    .filter(w => {
-      const d = new Date(w.date)
-      const now = new Date()
-      const diff = (now - d) / (1000 * 60 * 60 * 24)
-      return diff <= 7
-    })
-    .reduce((sum, w) => sum + w.duration_minutes, 0)
+  const weeklyWorkouts = workouts.filter(w => {
+    const d = new Date(w.date)
+    const now = new Date()
+    const diff = (now - d) / (1000 * 60 * 60 * 24)
+    return diff <= 7
+  })
+
+  const totalMinutes = weeklyWorkouts.reduce((sum, w) => sum + w.duration_minutes, 0)
+  const totalMiles = weeklyWorkouts.reduce((sum, w) => sum + (w.miles || 0), 0)
 
   return (
     <div className="workout-tracker">
@@ -88,6 +97,18 @@ export default function WorkoutTracker() {
           </div>
 
           <div className="tracker-field">
+            <label className="tracker-label">Distance (miles, optional)</label>
+            <input
+              type="number"
+              step="0.1"
+              className="tracker-input"
+              placeholder="e.g. 3.2"
+              value={miles}
+              onChange={e => setMiles(e.target.value)}
+            />
+          </div>
+
+          <div className="tracker-field">
             <label className="tracker-label">Notes (optional)</label>
             <input
               type="text"
@@ -102,9 +123,20 @@ export default function WorkoutTracker() {
             {saving ? 'Saving...' : 'Log workout'}
           </button>
 
-          <div className="workout-stat">
-            <span className="workout-stat-number">{totalThisWeek}</span>
-            <span className="workout-stat-label">minutes this week</span>
+          <div className="workout-stats-row">
+            <div className="workout-stat">
+              <span className="workout-stat-number">{totalMinutes}</span>
+              <span className="workout-stat-label">minutes this week</span>
+            </div>
+            {totalMiles > 0 && (
+              <>
+                <div className="workout-stat-divider" />
+                <div className="workout-stat">
+                  <span className="workout-stat-number">{totalMiles.toFixed(1)}</span>
+                  <span className="workout-stat-label">miles this week</span>
+                </div>
+              </>
+            )}
           </div>
         </div>
 
@@ -123,7 +155,10 @@ export default function WorkoutTracker() {
                   {w.notes && <span className="workout-notes">{w.notes}</span>}
                 </div>
                 <div className="workout-row-right">
-                  <span className="workout-duration">{w.duration_minutes} min</span>
+                  <span className="workout-duration">
+                    {w.duration_minutes} min
+                    {w.miles ? ` · ${w.miles} mi` : ''}
+                  </span>
                   <button className="tracker-delete-btn" onClick={() => handleDelete(w.id)}>
                     <Trash2 size={14} />
                   </button>

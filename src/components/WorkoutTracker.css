@@ -1,289 +1,181 @@
-.water-tracker { width: 100%; }
 
-.water-layout {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
+.tracker-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+  align-items: start;
 }
 
-.water-left {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  flex: 1;
-  min-width: 0;
-}
-
-/* ── Main water card (unchanged look) ── */
-.water-card {
+.tracker-card {
   background: var(--warm-white);
   border: 1px solid var(--border);
   border-radius: var(--r-xl);
   padding: 24px;
 }
 
-.water-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 24px;
-  gap: 16px;
+.tracker-card-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--ink);
+  margin-bottom: 20px;
 }
 
-.water-goal-edit {
+.tracker-field {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
+  margin-bottom: 14px;
 }
 
-.water-goal-select {
-  padding: 5px 10px;
+.tracker-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.tracker-input {
+  padding: 8px 12px;
   border-radius: var(--r-sm);
   border: 1px solid var(--border);
   background: var(--cream);
   color: var(--ink);
-  font-size: 13px;
+  font-size: 14px;
   outline: none;
+  font-family: var(--font-body);
 }
 
-.water-display {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  margin-bottom: 20px;
+.tracker-input:focus { border-color: var(--sage); }
+
+.tracker-save-btn {
+  width: 100%;
+  padding: 11px;
+  border-radius: var(--r-md);
+  border: none;
+  background: var(--sage);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 4px;
+  margin-bottom: 16px;
+  transition: background 0.15s;
 }
 
-.water-glasses-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  max-width: 220px;
+.tracker-save-btn:hover:not(:disabled) { background: var(--ink); }
+.tracker-save-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.tracker-loading, .tracker-empty {
+  font-size: 14px;
+  color: var(--ink-muted);
+  font-style: italic;
+  padding: 12px 0;
 }
 
-.water-glass {
+.tracker-delete-btn {
   background: none;
   border: none;
+  color: var(--ink-faint);
   cursor: pointer;
-  padding: 2px;
-  border-radius: 4px;
-  transition: transform 0.1s;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transition: all 0.15s;
 }
-.water-glass:hover { transform: scale(1.15); }
 
-.water-stats { flex: 1; }
+.tracker-delete-btn:hover { color: var(--terracotta); }
 
-.water-big-number {
+@media (max-width: 768px) {
+  .tracker-grid { grid-template-columns: 1fr; }
+}
+
+
+.workout-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.workout-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: var(--cream);
+  border-radius: var(--r-md);
+  gap: 12px;
+}
+
+.workout-row:hover .tracker-delete-btn { opacity: 1; }
+
+.workout-row-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.workout-type {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.workout-date {
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+.workout-notes {
+  font-size: 12px;
+  color: var(--ink-muted);
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.workout-row-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.workout-duration {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--sage);
+  white-space: nowrap;
+}
+
+.workout-stats-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+}
+
+.workout-stat {
   display: flex;
   align-items: baseline;
   gap: 4px;
-  margin-bottom: 4px;
 }
 
-.water-count {
+.workout-stat-number {
   font-family: var(--font-display);
-  font-size: 48px;
-  color: var(--dusty-blue);
-  line-height: 1;
-}
-
-.water-total { font-size: 20px; color: var(--ink-muted); }
-
-.water-oz {
-  font-size: 13px;
-  color: var(--ink-muted);
-  margin-bottom: 12px;
-}
-
-.water-progress-bar {
-  height: 6px;
-  background: var(--dusty-blue-light);
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 6px;
-}
-
-.water-progress-fill {
-  height: 100%;
-  background: var(--dusty-blue);
-  border-radius: 6px;
-  transition: width 0.3s ease;
-}
-
-.water-pct { font-size: 12px; color: var(--ink-muted); }
-
-.water-controls {
-  display: flex;
-  gap: 10px;
-}
-
-.water-btn {
-  flex: 1;
-  padding: 10px;
-  border-radius: var(--r-md);
-  border: 1px solid var(--border);
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.15s;
-  background: none;
-}
-
-.water-btn.plus {
-  background: var(--dusty-blue);
-  color: white;
-  border-color: var(--dusty-blue);
-}
-.water-btn.plus:hover:not(:disabled) { background: var(--ink); border-color: var(--ink); }
-.water-btn.minus { color: var(--ink-muted); }
-.water-btn.minus:hover:not(:disabled) { background: var(--cream); color: var(--ink); }
-.water-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-.water-congrats {
-  margin-top: 16px;
-  padding: 10px 16px;
-  background: var(--sage-light);
+  font-size: 28px;
   color: var(--sage);
-  border-radius: var(--r-md);
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
 }
 
-/* ── Tea & Soda small cards ── */
-.bev-row {
-  display: flex;
-  gap: 16px;
-}
-
-.bev-card {
-  flex: 1;
-  background: var(--warm-white);
-  border: 1px solid var(--border);
-  border-radius: var(--r-xl);
-  padding: 18px;
-}
-
-.bev-card-title {
-  font-family: var(--font-display);
-  font-size: 15px;
-  color: var(--ink);
-  margin-bottom: 12px;
-}
-
-.bev-icons-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 10px;
-  min-height: 36px;
-}
-
-.bev-icon-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 2px;
-  border-radius: 4px;
-  transition: transform 0.1s;
-}
-.bev-icon-btn:hover { transform: scale(1.15); }
-
-.bev-count {
-  font-size: 13px;
-  color: var(--ink-muted);
-  margin-bottom: 10px;
-}
-
-.bev-controls {
-  display: flex;
-  gap: 8px;
-}
-
-.bev-btn {
-  flex: 1;
-  padding: 7px;
-  border-radius: var(--r-md);
-  border: 1px solid var(--border);
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s;
-  background: none;
-  color: var(--ink-muted);
-}
-.bev-btn.minus:hover:not(:disabled) { background: var(--cream); color: var(--ink); }
-.bev-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-
-.bev-btn.plus.tea-plus {
-  background: #A89B7B;
-  color: white;
-  border-color: #A89B7B;
-}
-.bev-btn.plus.tea-plus:hover { background: #8a7d60; border-color: #8a7d60; }
-
-.bev-btn.plus.soda-plus {
-  background: #D4688A;
-  color: white;
-  border-color: #D4688A;
-}
-.bev-btn.plus.soda-plus:hover { background: #b84f70; border-color: #b84f70; }
-
-/* ── History log ── */
-.bev-history {
-  width: 200px;
-  flex-shrink: 0;
-  background: var(--warm-white);
-  border: 1px solid var(--border);
-  border-radius: var(--r-xl);
-  padding: 20px;
-  align-self: flex-start;
-}
-
-.bev-history-title {
-  font-family: var(--font-display);
-  font-size: 15px;
-  color: var(--ink);
-  margin-bottom: 16px;
-}
-
-.bev-history-empty {
+.workout-stat-label {
   font-size: 13px;
   color: var(--ink-muted);
 }
 
-.bev-history-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.workout-stat-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+  align-self: center;
 }
-
-.bev-history-row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.bev-history-date {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink);
-  letter-spacing: 0.02em;
-}
-
-.bev-history-items {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.bev-history-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: var(--ink-muted);
-  font-weight: 500;
-}
-
-.bev-history-icon { font-size: 13px; }
-.bev-history-unit { font-weight: 400; font-size: 12px; }
