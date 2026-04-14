@@ -1,6 +1,6 @@
 .health-page {
   padding: 40px 48px;
-  max-width: 860px;
+  max-width: 1100px;   /* was 860px */
 }
 
 .health-header {
