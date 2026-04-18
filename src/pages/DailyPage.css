@@ -259,46 +259,7 @@
   margin: 0 16px;
 }
 
-.quote-section {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 16px 40px;
-  background: var(--warm-white);
-  border-color: var(--border);
-}
 
-.quote-mark {
-  display: none;
-}
-
-.quote-text {
-  font-family: var(--font-display);
-  font-size: 15px;
-  color: var(--ink);
-  line-height: 1.5;
-  max-width: 600px;
-  margin-bottom: 8px;
-  font-style: italic;
-}
-
-.quote-author {
-  font-size: 13px;
-  color: var(--ink-muted);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.quote-title {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--ink-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 12px;
-}
 
 @media (max-width: 768px) {
   .daily-page { padding: 24px 20px; }

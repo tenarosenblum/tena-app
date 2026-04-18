@@ -40,6 +40,9 @@ const QUOTES = [
   { text: "He's more myself than I am. Whatever our souls are made of, his and mine are the same.", author: "Emily Brontë" },
   { text: "I have dreamt in my life, dreams that have stayed with me ever after.", author: "Emily Brontë" },
   { text: "But he that dares not grasp the thorn should never crave the rose.", author: "Anne Brontë" },
+  { text: "Find yourself. In the stillness between your breaths. In the softness of your hands. Find yourself and don't you dare ever let go.", author: "F.D. Soul" },
+  { text: "good poetry is closing your eyes when you hear my heartbeat and wonder if it is your own", author: "F.D. Soul" },
+
 ]
 
 const AUTHORS = [...new Set(QUOTES.map(q => q.author))]
