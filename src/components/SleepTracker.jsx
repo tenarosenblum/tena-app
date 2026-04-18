@@ -189,11 +189,14 @@ export default function SleepTracker() {
               const q = QUALITY.find(q => q.id === log.quality)
               return (
                 <div key={log.id} className="sleep-log-row">
-                  <span className="log-date">{format(parseISO(log.date), 'EEE, MMM d')}</span>
-                  <span className="log-hours">{Number(log.hours_slept).toFixed(1)}h</span>
-                  <span className="log-quality" style={{ color: q?.color }}>{q?.label}</span>
-                  <span className="log-times">{log.bedtime} → {log.wake_time}</span>
-                  <button className="log-delete" onClick={() => deleteLog(log.id)}><Trash2 size={13} /></button>
+                  <div className="log-main">
+                    <span className="log-date">{format(parseISO(log.date), 'EEE, MMM d')}</span>
+                    <span className="log-hours">{Number(log.hours_slept).toFixed(1)}h</span>
+                    <span className="log-quality" style={{ color: q?.color }}>{q?.label}</span>
+                    <span className="log-times">{log.bedtime} → {log.wake_time}</span>
+                    <button className="log-delete" onClick={() => deleteLog(log.id)}><Trash2 size={13} /></button>
+                  </div>
+                  {log.notes && <div className="log-notes">{log.notes}</div>}
                 </div>
               )
             })}
