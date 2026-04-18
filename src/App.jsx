@@ -8,6 +8,7 @@ import { supabase } from './supabase.js'
 import './App.css'
 import RemindersPage from './pages/RemindersPage.jsx'
 import HealthPage from './pages/HealthPage.jsx'
+import PoetsCorner from './pages/PoetsCorner.jsx'
 
 export default function App() {
   const [page, setPage] = useState('daily')
@@ -75,6 +76,7 @@ export default function App() {
         {page === 'reminders' && <RemindersPage />}
         {page === 'files' && <FilesPage />}
         {page === 'health' && <HealthPage initialMood={selectedMood} />}
+        {page === 'poets' && <PoetsCorner />}
       </main>
     </div>
   )

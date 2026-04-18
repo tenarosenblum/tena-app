@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutDashboard, MessageCircle, CheckSquare, Sparkles, FolderOpen, Bell, Heart } from 'lucide-react'
+import { LayoutDashboard, MessageCircle, CheckSquare, Sparkles, FolderOpen, Bell, Heart, BookOpen } from 'lucide-react'
 import './Sidebar.css'
 
 const NAV = [
@@ -9,6 +9,7 @@ const NAV = [
   { id: 'reminders', label: 'Reminders', icon: Bell },
   { id: 'health', label: 'Health', icon: Heart },
   { id: 'files', label: 'Files', icon: FolderOpen },
+  { id: 'poets', label: "Poet's Corner", icon: BookOpen },
 ]
 
 export default function Sidebar({ page, setPage, tasks }) {
