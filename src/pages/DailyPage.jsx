@@ -25,8 +25,7 @@ export default function DailyPage({ tasks, toggleTask, setPage, setSelectedMood 
   const done = tasks.filter(t => t.done).length
   const total = tasks.length
   const pct = total ? Math.round((done / total) * 100) : 0
-
-  const todayQuote = QUOTES[new Date().getDate() % QUOTES.length]
+]
 
   const [weather, setWeather] = useState(null)
 
