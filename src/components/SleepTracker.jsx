@@ -32,6 +32,7 @@ export default function SleepTracker() {
   const [notes, setNotes] = useState('')
   const [saving, setSaving] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [logPage, setLogPage] = useState(0)
 
   useEffect(() => { fetchLogs() }, [])
 
@@ -184,24 +185,42 @@ export default function SleepTracker() {
           )}
 
           <div className="sleep-log-list">
-            <div className="sleep-log-list-title">Recent logs</div>
-            {logs.slice(0, 7).map(log => {
-              const q = QUALITY.find(q => q.id === log.quality)
-              return (
-                <div key={log.id} className="sleep-log-row">
-                  <div className="log-main">
-                    <span className="log-date">{format(parseISO(log.date), 'EEE, MMM d')}</span>
-                    <span className="log-hours">{Number(log.hours_slept).toFixed(1)}h</span>
-                    <span className="log-quality" style={{ color: q?.color }}>{q?.label}</span>
-                    <span className="log-times">{log.bedtime} → {log.wake_time}</span>
-                    <button className="log-delete" onClick={() => deleteLog(log.id)}><Trash2 size={13} /></button>
-                  </div>
-                  {log.notes && <div className="log-notes">{log.notes}</div>}
-                </div>
-              )
-            })}
-            {logs.length === 0 && <div className="no-logs">No sleep logged yet — start tracking tonight!</div>}
-          </div>
+  <div className="sleep-log-list-title">Recent logs</div>
+  {logs.slice(logPage * 7, logPage * 7 + 7).map(log => {
+    const q = QUALITY.find(q => q.id === log.quality)
+    return (
+      <div key={log.id} className="sleep-log-row">
+        <div className="log-main">
+          <span className="log-date">{format(parseISO(log.date), 'EEE, MMM d')}</span>
+          <span className="log-hours">{Number(log.hours_slept).toFixed(1)}h</span>
+          <span className="log-quality" style={{ color: q?.color }}>{q?.label}</span>
+          <span className="log-times">{log.bedtime} → {log.wake_time}</span>
+          <button className="log-delete" onClick={() => deleteLog(log.id)}><Trash2 size={13} /></button>
+        </div>
+        {log.notes && <div className="log-notes">{log.notes}</div>}
+      </div>
+    )
+  })}
+  {logs.length === 0 && <div className="no-logs">No sleep logged yet — start tracking tonight!</div>}
+
+  {logs.length > 7 && (
+    <div className="log-pagination">
+      <button
+        className="page-arrow"
+        onClick={() => setLogPage(p => p - 1)}
+        disabled={logPage === 0}
+      >‹</button>
+      <span className="page-indicator">
+        {logPage + 1} / {Math.ceil(logs.length / 7)}
+      </span>
+      <button
+        className="page-arrow"
+        onClick={() => setLogPage(p => p + 1)}
+        disabled={(logPage + 1) * 7 >= logs.length}
+      >›</button>
+    </div>
+  )}
+</div>
         </div>
       </div>
     </div>
