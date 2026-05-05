@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutDashboard, MessageCircle, CheckSquare, Sparkles, FolderOpen, Bell, Heart, Lock, LockOpen } from 'lucide-react'
+import { LayoutDashboard, MessageCircle, CheckSquare, Sparkles, FolderOpen, Bell, Heart, Lock, LockOpen, BookOpen } from 'lucide-react'
 import { useLock } from '../PrivateLock.jsx'
 import './Sidebar.css'
 
@@ -12,6 +12,7 @@ const NAV = [
   { id: 'reminders', label: 'Reminders', icon: Bell },
   { id: 'health', label: 'Health', icon: Heart, private: true },
   { id: 'files', label: 'Files', icon: FolderOpen, private: true },
+  { id: 'poets', label: "Poet's Corner", icon: BookOpen },
 ]
 
 export default function Sidebar({ page, setPage, tasks }) {

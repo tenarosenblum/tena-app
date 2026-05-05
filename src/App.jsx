@@ -8,6 +8,7 @@ import { supabase } from './supabase.js'
 import './App.css'
 import RemindersPage from './pages/RemindersPage.jsx'
 import HealthPage from './pages/HealthPage.jsx'
+import PoetsCorner from './pages/PoetsCorner.jsx'
 import { PrivateLockProvider, useLock, PasswordGate } from './PrivateLock.jsx'
 
 const PRIVATE_PAGES = new Set(['health', 'files'])
@@ -85,6 +86,7 @@ function AppInner() {
             {page === 'reminders' && <RemindersPage />}
             {page === 'files' && <FilesPage />}
             {page === 'health' && <HealthPage initialMood={selectedMood} />}
+            {page === 'poets' && <PoetsCorner />}
           </>
         )}
       </main>
