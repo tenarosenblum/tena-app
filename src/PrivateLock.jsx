@@ -4,7 +4,7 @@ import { Lock, Eye, EyeOff, Sparkles } from 'lucide-react'
 const LockContext = createContext(null)
 
 // ── Change this to your password ──────────────────────────────────────────────
-const PRIVATE_PASSWORD = 'mama2024'
+const PRIVATE_PASSWORD = 'yellow'
 // ─────────────────────────────────────────────────────────────────────────────
 
 const SESSION_KEY = 'mama_unlocked'
